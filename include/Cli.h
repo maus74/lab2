@@ -1,8 +1,24 @@
-//
-// Created by maus on 04.12.19.
-//
+#include "Experiment.h"
+#include <iostream>
+#include <string>
 
-#ifndef LAB_02_CACHE_CLI_H
-#define LAB_02_CACHE_CLI_H
+namespace Cli
+{
 
-#endif //LAB_02_CACHE_CLI_H
+    template<typename T>
+    T input(const std::string &output = "")
+    {
+        if (!output.empty()) {
+            std::cout << output << std::flush;
+        }
+
+        T value;
+        std::cin >> value;
+        return value;
+    }
+
+    std::string directionToString(Investigation::Direction direction);
+    std::string experimentDataToYamlString(const ExperimentData &data);
+    std::string experimentDataToHtmlString(const ExperimentData &data);
+
+}
