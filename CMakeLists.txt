@@ -11,12 +11,12 @@ set(
         CACHE STRING "Default cache server"
 )
 
-include("tools/gate/cmake/HunterGate.cmake")
+#include("tools/gate/cmake/HunterGate.cmake")
 
-HunterGate(
-        URL "https://github.com/ruslo/hunter/archive/v0.23.214.tar.gz"
-        SHA1 "e14bc153a7f16d6a5eeec845fb0283c8fad8c358"
-)
+#HunterGate(
+ #       URL "https://github.com/ruslo/hunter/archive/v0.23.214.tar.gz"
+ #       SHA1 "e14bc153a7f16d6a5eeec845fb0283c8fad8c358"
+#)
 
 project(lab-02-cache)
 string(APPEND CMAKE_CXX_FLAGS " -pedantic -Werror -Wall -Wextra")
