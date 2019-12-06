@@ -19,6 +19,7 @@ Experiment Experiment::doExperiment(size_t bufferSize, Investigation::Direction 
     auto buffer = createFilledBuffer(bufferSize);
 
     std::vector<size_t> indexes(bufferSize);
+    // заполняем массив индексов
     std::iota(indexes.begin(), indexes.end(), 0);
 
     static const std::unordered_map<
@@ -67,7 +68,7 @@ void Experiment::runRandom(const Experiment::BufferPtr &buffer, std::vector<size
 
 void Experiment::run(const BufferPtr &buffer, const std::vector<size_t> &indexes)
 {
-    AtomicType value = 0;
+    size_t value = 0;
 
     for (size_t index : indexes) {
         value = buffer[index];
@@ -79,7 +80,7 @@ const size_t Experiment::iterationAmount = 1000;
 
 Experiment::BufferPtr Experiment::createFilledBuffer(size_t size)
 {
-    auto buffer = BufferPtr(new AtomicType[size]);
+    auto buffer = BufferPtr(new size_t[size]);
     auto random = std::mt19937{std::random_device{}()};
 
     for (size_t i = 0; i < size; i++) {
@@ -91,12 +92,12 @@ Experiment::BufferPtr Experiment::createFilledBuffer(size_t size)
 
 size_t Experiment::kibToSize(size_t kib)
 {
-    return kib * 1024 / sizeof(AtomicType);
+    return kib * 1024 / sizeof(size_t);
 }
 
 size_t Experiment::sizeToKib(size_t size)
 {
-    return size * sizeof(AtomicType) / 1024;
+    return size * sizeof(size_t) / 1024;
 }
 
 Investigation Investigation::doInvestigation(Direction direction, const BufferType &bufferSizes)
@@ -116,6 +117,21 @@ Investigation Investigation::doInvestigation(Direction direction, const BufferTy
             std::move(experiments),
     };
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ExperimentInitData ExperimentInitData::getExperimentData(const HardwareData &hardware)
 {
